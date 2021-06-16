@@ -37,6 +37,9 @@ app.get("/api/:date?", (req, res) => {
       date = new Date(Number(req.params.date));
     }
     res.json({unix: date.getTime(), utc: date.toUTCString()});
+  } else if (new Date(req.params.date) != "Invalid Date") {
+    const date = new Date(req.params.date);
+    res.json({unix: date.getTime(), utc: date.toUTCString()});
   } else {
     res.json({"error": "Invalid Date"});
   }
